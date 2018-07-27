@@ -1,0 +1,90 @@
+﻿@model IEnumerable<CleaverBrooks1.Models.ApplicationModel>
+
+@{
+    ViewData["Title"] = "GetMyApplications";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>GetMyApplications</h2>
+
+
+
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.DisplayName)
+                    </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DisplayName)
+                </td>
+
+            </tr>
+    }
+        </tbody>
+    </table>*@
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 75%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Applications</h2>
+
+
+
+    <table class="table-responsive col-lg-offset-3 alert-success ">
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.DisplayName)
+            </th>
+           
+            
+        </tr>
+
+
+
+        @foreach (var items in Model)
+        {
+            <tr>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => items.DisplayName)
+                </td>
+               
+                
+            </tr>
+        }
+
+
+
+    </table>
+
+</body>
+</html>
+

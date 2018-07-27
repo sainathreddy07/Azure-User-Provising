@@ -1,0 +1,178 @@
+﻿<!--  Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
+        See LICENSE in the source repository root for complete license information. -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to the CleaverBrooks Portal</title>
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+</head>
+<body>
+    <div style="background-color: #FFF;margin-left:8px;">
+        @*Header*@
+        <div>
+            <header class="row">
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header" id="header">
+                        <div class="col-xs-12 col-sm-9 ">
+                            <a href="/" class="navbar-brand ">
+                                <img src="/images/logo.jpg" alt="LOGO" />
+                            </a>
+                        </div>
+                        <div class="col-sm-3 col-md-3 pull-right hidden-xs vbottom gsearch">
+
+                        </div>
+                    </div>
+                    <div id="menuContainer">
+                        <button type="button" class="navbar-toggle navbar-toggle-2 collapsed" data-toggle="collapse" data-target="#left-menu" aria-expanded="false">
+                            <i class="glyphicon glyphicon-chevron-down"></i>
+                        </button>
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topMenu" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="topMenu">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#"> Cleaver Brooks portal</a> </li>
+
+                                <li style="margin-left:35px">
+                                    <a asp-area="" asp-controller="Home" asp-action="Index"><i class="glyphicon glyphicon-home"></i></a>
+                                </li>
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+
+                                }
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    var isAdmin = Context.Session.GetBoolean("IsAdmin");
+
+                                    <li><a asp-area="" asp-controller="Profile" asp-action="GetAllUsers">CBUsers</a></li>
+                                    <li><a asp-area="" asp-controller="Profile" asp-action="GetMyApplications">My Applications</a></li>
+                                    if (isAdmin)
+                                    {
+                                        <li>
+                                            <a asp-area="" asp-controller="Profile" asp-action="GetAllEnterpriseApps">Enterprise Apps</a>
+                                        </li>
+                                        <li>
+                                            <a asp-area="" asp-controller="Profile" asp-action="GetAllGroups">Companies</a>
+
+                                        </li>
+                                    }
+
+                                    @*if (isAdmin)
+                                        {
+                                            <li>
+                                                <a asp-area="" asp-controller="Profile" asp-action="ProjectPermission">Permissions</a>
+                                            </li>
+                                        }*@
+
+
+                                    <li>
+                                        <a asp-area="" asp-controller="Profile" asp-action="ProjectPermission">Permissions</a>
+                                    </li>
+
+
+                                    @* <li><a href="#">Resource Center</a></li>*@
+                                    <li><a href="#">Service</a></li>
+                                    @*<li><a href="#">Training</a></li>*@
+
+
+                                }
+                                <
+                                <li><a href="#">Contact</a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    var username = User.Identity.Name ?? User.FindFirst("name")?.Value ?? User.FindFirst("preferred_username")?.Value;
+
+                                    <li class="navbar-text" style="margin-top:12px !important;margin-bottom: 0 !important;">@username</li>
+                                    <li><a asp-area="" asp-controller="Account" asp-action="SignOut">Sign Out</a></li>
+                                }
+                                else
+                                {
+                                    <li><a asp-area="" asp-controller="Account" asp-action="Signin">Login</a></li>
+
+                                }
+
+                            </ul>
+                            @*@await Html.PartialAsync("_LoginPartial")*@
+
+                        </div>
+                    </div>
+                </nav>
+                <script>
+                                                                                                                                                                                                                                                                                                                                        //to fix the menu at top on scrolling
+                                                                                                                                                                                                                                                                                                                                        //$('#menuContainer').affix({
+                                                                                                                                                                                                                                                                                                                                           // offset: {
+                                                                                                                                                                                                                                                                                                                                               // top: $('#header').height()
+                                                                                                                                                                                                                                                                                                                                           // };
+                                                                                                                                                                                                                                                                                                                                       // });
+
+                </script>
+            </header>
+        </div>
+        @*Sidenav*@
+
+        <div class="row">    </div>
+        <div>
+            <div class="row middle-content">
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    // @await Html.PartialAsync("_SidenavPartial")
+
+                }
+
+
+
+
+                <div class="col-sm-7 ">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+
+        <script src="~/lib/Microsoft.jQuery.Unobtrusive.Ajax/jquery.unobtrusive-ajax.min.js"></script>
+
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    </environment>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

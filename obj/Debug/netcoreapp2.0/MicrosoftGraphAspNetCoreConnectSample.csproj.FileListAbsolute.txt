@@ -1,0 +1,11 @@
+C:\Users\sreddy\Downloads\aspnetcore-connect-sample-master\MicrosoftGraphAspNetCoreConnectSample\bin\Debug\netcoreapp2.0\MicrosoftGraphAspNetCoreConnectSample.deps.json
+C:\Users\sreddy\Downloads\aspnetcore-connect-sample-master\MicrosoftGraphAspNetCoreConnectSample\bin\Debug\netcoreapp2.0\MicrosoftGraphAspNetCoreConnectSample.runtimeconfig.json
+C:\Users\sreddy\Downloads\aspnetcore-connect-sample-master\MicrosoftGraphAspNetCoreConnectSample\bin\Debug\netcoreapp2.0\MicrosoftGraphAspNetCoreConnectSample.runtimeconfig.dev.json
+C:\Users\sreddy\Downloads\aspnetcore-connect-sample-master\MicrosoftGraphAspNetCoreConnectSample\bin\Debug\netcoreapp2.0\MicrosoftGraphAspNetCoreConnectSample.dll
+C:\Users\sreddy\Downloads\aspnetcore-connect-sample-master\MicrosoftGraphAspNetCoreConnectSample\bin\Debug\netcoreapp2.0\MicrosoftGraphAspNetCoreConnectSample.pdb
+C:\Users\sreddy\Downloads\aspnetcore-connect-sample-master\MicrosoftGraphAspNetCoreConnectSample\obj\Debug\netcoreapp2.0\MicrosoftGraphAspNetCoreConnectSample.csproj.CoreCompileInputs.cache
+C:\Users\sreddy\Downloads\aspnetcore-connect-sample-master\MicrosoftGraphAspNetCoreConnectSample\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\sreddy\Downloads\aspnetcore-connect-sample-master\MicrosoftGraphAspNetCoreConnectSample\obj\Debug\netcoreapp2.0\MicrosoftGraphAspNetCoreConnectSample.AssemblyInfoInputs.cache
+C:\Users\sreddy\Downloads\aspnetcore-connect-sample-master\MicrosoftGraphAspNetCoreConnectSample\obj\Debug\netcoreapp2.0\MicrosoftGraphAspNetCoreConnectSample.AssemblyInfo.cs
+C:\Users\sreddy\Downloads\aspnetcore-connect-sample-master\MicrosoftGraphAspNetCoreConnectSample\obj\Debug\netcoreapp2.0\MicrosoftGraphAspNetCoreConnectSample.dll
+C:\Users\sreddy\Downloads\aspnetcore-connect-sample-master\MicrosoftGraphAspNetCoreConnectSample\obj\Debug\netcoreapp2.0\MicrosoftGraphAspNetCoreConnectSample.pdb

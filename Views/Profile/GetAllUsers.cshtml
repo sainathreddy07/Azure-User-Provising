@@ -1,0 +1,398 @@
+﻿@model IEnumerable<CleaverBrooks1.Models.UserModel>
+
+@{
+    ViewData["Title"] = "GetAllUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>GetAllUsers</h2>
+
+
+    <script>
+
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    </script>
+
+    <div class="container">
+        <div class="row">
+            @if (ViewBag.IsAdmin)
+            {
+                @Html.ActionLink("Create New User", "CreateUser", "Profile")
+            }
+
+            <div class="col-lg-12">
+                <table class="table table-bordered table-responsive">
+                    <tr>
+
+                        <th>GivenName</th>
+                        <th>Display Name</th>
+                        <th>User Profile Name</th>
+                        <th>Delete</th>
+                    </tr>
+
+                    @foreach (var user in Model)
+                    {
+                        var userModel = user as CleaverBrooks1.Models.UserModel;
+
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(model => userModel.GivenName)
+                            </td>
+                            <td> @Html.DisplayFor(model => userModel.DisplayName)</td>
+                            <td>
+                                @Html.DisplayFor(model => userModel.UserPrincipalName)
+                            </td>
+                            <td align="center">
+
+
+                                @if (ViewBag.IsAdmin)
+                                {
+
+
+                                    <form asp-controller="Profile" asp-action="DeleteUser" method="get">
+                                        <input type="hidden" name="Id" value="@user.Id" />
+                                        <input type="submit" value="Delete" class="btn btn-default" />
+
+                                    </form>
+
+                                }
+
+
+
+
+                            </td>
+
+
+
+
+                        </tr>
+
+
+
+                    }
+                </table>
+            </div>
+
+        </div>
+    </div>*@
+
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 125%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+<div>
+    <h2>UsersList</h2>
+
+
+
+    @*<a class="btn btn-default btn-primary"
+          @if (ViewBag.IsAdmin) { @Html.ActionLink("Create New User", "CreateUser", "Profile") }
+        </a>*@
+
+
+    @*<div class="input-group">
+            <select id="ddlGroup" name="Id" class="form-control" asp-items="@(new SelectList(@ViewBag.listOfGroup, "Id", "DisplayName"))"></select>
+            <span class="input-group-btn">  <input type="button" id="btnAddToGroup" value="Add to Company" class="btn btn-default col-lg-offset-1" /></span>
+            <span class="input-group-btn">  <input type="button" id="btnDelFromGroup" value="Delete from Company" class="btn btn-default col-lg-offset-1" /></span>
+        </div>*@
+
+
+    <div align="center" class="row" style="margin-left:20%">
+        <div class="col-lg-9">
+
+
+            @if (ViewBag.IsAdmin)
+            {
+
+                <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Select.. <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" id="addtoGroupDialog">Add To Company</a></li>
+                    <li><a id="addtoPersonaDialog">Add To Persona</a></li>
+                </ul>
+
+                @Html.ActionLink("Create New User", "CreateUser", "Profile", "", new { @class = "btn btn-primary" })
+
+               
+
+            }
+            @if (ViewBag.IsAdmin)
+            {@Html.ActionLink("Invite Guest Users", "InviteGuestUsers", "Profile", "", new { @class = "btn btn-primary" })}
+     
+        </div>
+        <div class="col-lg-3" style="float:right">
+            <form asp-controller="Profile" asp-action="GetAllUsers" method="get">
+                <div class="input-group ">
+                    <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                    <input class="form-control glyphicon-align-center" class="form-control" style="  width: 100px; padding-left: 300px" id="searchTxt" name="searchTxt" placeholder="Search for">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                    </span>
+                </div>
+            </form>
+        </div>
+
+    </div><br />
+
+    <div class="row">
+        <div class="col-md-9">
+
+
+            <table class="table-responsive col-lg-offset-3 alert-success ">
+                <tr>
+                    <th>
+                        <input type="checkbox" id="chkSelectAll" />
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GivenName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DisplayName)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserPrincipalName)
+                    </th>
+
+
+                    <th>
+                        Delete
+                    </th>
+                </tr>
+
+
+
+                @foreach (var items in Model)
+                {
+                    var name = items.Id;
+                    <tr>
+                        <td>
+                            <input name="@name" id="@name" type="checkbox" class="chkUserClass" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => items.GivenName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => items.DisplayName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => items.UserPrincipalName)
+                        </td>
+
+
+
+                        <td align="center">
+
+
+                            @if (ViewBag.IsAdmin)
+                            {
+
+
+                                <form asp-controller="Profile" asp-action="DeleteUser" method="get">
+                                    <input type="hidden" name="Id" value="@items.Id" />
+                                    <input type="submit" value="Delete" class=" btn btn-default btn-primary text-right" />
+
+                                </form>
+
+                            }
+
+
+
+
+                        </td>
+
+                    </tr>
+                }
+
+
+
+            </table>
+        </div>
+
+    </div>
+
+
+<div id="groupModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add/Delete To Group</h4>
+            </div>
+            <div class="modal-body">
+                Add <span id="spanUserCount"></span> users to...
+                <div class="input-group">
+                    <select id="ddlGroup" name="Id" class="form-control" asp-items="@(new SelectList(@ViewBag.listOfGroup, "Id", "DisplayName"))"></select>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" id="btnAddToGroup" value="Add" class="btn btn-default col-lg-offset-1" />
+                <input type="button" id="btnDelFromGroup" value="Delete" class="btn btn-default col-lg-offset-1" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="personaModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add/Delete To Persona</h4>
+            </div>
+            <div class="modal-body">
+                Add <span id="spanPersonaUserCount"></span> users to...
+                <div class="input-group">
+                    <select id="ddlPersonaGroup" name="Id" class="form-control" asp-items="@(new SelectList(@ViewBag.listOfPersonaGroup, "Id", "DisplayName"))"></select>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" id="btnAddToPersona" value="Add" class="btn btn-default col-lg-offset-1" />
+                <input type="button" id="btnDelFromPersona" value="Delete" class="btn btn-default col-lg-offset-1" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    $(document).ready(
+        function () {
+            var selectedOption = "";
+            var actionMsg = "";
+            $('#addtoGroupDialog').click(function () {
+                selectedOption = "CompanyGroup";
+                var userCount = $(".chkUserClass:checked").length;
+                if (!userCount) {
+                    alert("Please select an user to continue.");
+                    return;
+                }
+                $('#spanUserCount').text(userCount);
+                console.log("count" + userCount);
+                $("#groupModal").modal('show');
+
+            });
+            $('#addtoPersonaDialog').click(function () {
+                selectedOption = "PersonaGroup";
+                var userCount = $(".chkUserClass:checked").length;
+                if (!userCount) {
+                    alert("Please select an user to continue.");
+                    return;
+                }
+                $('#spanPersonaUserCount').text(userCount);
+                $("#personaModal").modal('show');
+
+            });
+
+            $('#chkSelectAll').click(function () {
+                $(".chkUserClass").attr('checked', this.checked);
+            });
+
+            $('#btnAddToGroup').click(function () {
+                executeAction('add');
+            });
+
+            $('#btnDelFromGroup').click(function () {
+                executeAction('delete');
+            });
+
+            $('#btnAddToPersona').click(function () {
+                executeAction('add');
+            });
+
+            $('#btnDelFromPersona').click(function () {
+                executeAction('delete');
+            });
+
+            function executeAction(actionType) {
+                var chks = $(".chkUserClass:checked");
+                var ids = [];
+                if (chks.length > 0) {
+                    chks.each(function (elem) {
+                        var id = $(this).attr('id');
+                        console.log(id);
+                        ids.push(id);
+                    });
+
+                }
+                var groupId = "";
+                if (selectedOption == "PersonaGroup") {
+                    groupId = $('#ddlPersonaGroup').val();
+                }
+                else {
+                    groupId = $('#ddlGroup').val();
+                }
+
+                data = { action: actionType, groupId: groupId, values: ids };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Profile/AddToCompany',
+                    dataType: 'json',
+                    data: data,
+                    success: function (response) {
+                        if (selectedOption == "PersonaGroup") {
+                            $("#personaModal").modal('hide');
+                        }
+                        else {
+                            $("#groupModal").modal('hide');
+                        }
+
+                        if (response) {
+                            if (actionType == "add") {
+                                alert("User(s) added successfully");
+                            }
+                            else if (actionType == "delete") {
+                                alert("User(s) deleted successfully");
+                            }
+
+                        }
+                        else {
+                            if (actionType == "add") {
+                                alert("One or more users could not be added");
+                            }
+                            else if (actionType == "delete") {
+                                alert("One or more users could not be deleted");
+                            }
+
+                        }
+                    },
+                    failure: function (response) {
+                        alert("An error has occurred. Please try again.")
+                    }
+                })
+            }
+        }
+    );
+
+</script>
+
+
+
+
+
+
+

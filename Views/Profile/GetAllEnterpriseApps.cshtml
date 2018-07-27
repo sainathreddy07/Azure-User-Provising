@@ -1,0 +1,125 @@
+﻿@model IEnumerable<CleaverBrooks1.Models.ApplicationModel>
+
+@{
+    ViewData["Title"] = "GetAllEnterpriseApps";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@*<p>
+    <a asp-action="RegisterApplication">Create New Application</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.AppId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DisplayName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SignonUrl)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DisplayName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SignonUrl)
+            </td>
+            <td>
+                <form asp-controller="Profile" asp-action="DeleteApplication" method="get">
+                    <input type="hidden" name="appId" value="@item.AppId" />
+                    <input type="submit" value="Delete" class="btn btn-default" />
+                </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>*@
+
+
+<html>
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 125%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>EnterpriseApplications</h2>
+
+    <p>
+        <a  class="btn btn-default btn-primary" asp-action="RegisterApplication">Create New Application</a>
+    </p>
+
+    <table class="table-responsive col-lg-offset-3 alert-success ">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AppId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DisplayName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SignonUrl)
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+
+
+
+        @foreach (var items in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => items.AppId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => items.DisplayName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => items.SignonUrl)
+                </td>
+
+                <td>
+                    <form asp-controller="Profile" asp-action="DeleteApplication" method="get">
+                        <input type="hidden" name="appId" value="@items.AppId" />
+                        <input type="submit" value="Delete" class="btn btn-default btn-primary text-right" />
+                    </form>
+                </td>
+            </tr>
+        }
+
+
+
+    </table>
+
+</body>
+</html>

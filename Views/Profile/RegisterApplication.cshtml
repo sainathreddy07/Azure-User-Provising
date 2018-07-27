@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "RegisterApplication";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Register Application</h2>
+
+
+<div class="container">
+    <div class="row">
+        <br />
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default panel-table">
+                <div class="panel-heading">
+                    <div class="row">
+                      
+                    </div>
+                    <div class="panel-body">
+                        <form asp-controller="Profile" asp-action="RegisterApplication" method="post">
+                            <div class="form-group">
+                                <label>Display Name</label>
+                                <input name="displayName" id="displayName" type="text" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Sign-On URL</label>
+                                <input name="signonUrl" id="signonUrl" type="text" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label></label>
+                                <input type="submit" class="btn btn-default" value="Submit" />
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

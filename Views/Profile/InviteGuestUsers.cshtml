@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "InviteGuestUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>InviteGuestUsers</h2>
+
+<h4> Users </h4>
+
+<form asp-controller="Profile" asp-action="SendInvitation" method="post">
+
+    <div class="form-group">
+        <label>Users CSV</label>
+        <textarea class="form-control" id="usersCsv" name="usersCsv" rows="5"></textarea>
+    </div>
+
+    <div>
+        <input type="submit" class="btn btn-primary" value="Submit" />
+    </div>
+</form>
